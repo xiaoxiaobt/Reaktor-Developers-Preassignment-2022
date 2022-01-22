@@ -1,0 +1,14 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  schedule:
+    - cron: '0/10 * * * *'
+
+jobs:
+  test_schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Every time
+        run: echo github.event.schedule
