@@ -24,4 +24,4 @@ jobs:
             ${{ runner.os }}-pip-
       - run: pip install -r requirements.txt
       - name: add new documents to mongodb
-        run: python test.py
+        run: python scheduled_fetch.py
