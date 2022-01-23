@@ -1,31 +1,21 @@
-import { Schema, model } from 'mongoose'
+const mongoose = require('mongoose')
 
-const resultSchema = new Schema({
+const resultSchema = new mongoose.Schema({
   t: Date,
-  author: String,
-  url: {
-    type: String,
-    required: true
-  },
   playerA: {
     name: String,
     played: {
       type: String,
-      enum : ['ROCK','PAPER','SCISSORS']
-    },
+      enum: ['ROCK', 'PAPER', 'SCISSORS']
+    }
   },
   playerB: {
     name: String,
     played: {
       type: String,
-      enum : ['ROCK','PAPER','SCISSORS']
-    },
-  },
-  comments: [
-    {
-      type: String
+      enum: ['ROCK', 'PAPER', 'SCISSORS']
     }
-  ]
+  }
 })
 
 resultSchema.set('toJSON', {
@@ -36,4 +26,4 @@ resultSchema.set('toJSON', {
   }
 })
 
-export default model('Result', resultSchema)
+module.exports = mongoose.model('Result', resultSchema)

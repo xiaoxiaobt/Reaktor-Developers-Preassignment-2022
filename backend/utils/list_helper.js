@@ -1,9 +1,8 @@
-import { filter, countBy, identity } from 'lodash'
-// var _ = require('lodash')
+var _ = require('lodash')
 
 /** Return the number of total games played by a player */
 const totalGames = (results, name) => {
-  return filter(results, i => i.playerA.name === name || i.playerB.name === name).length
+  return _.filter(results, i => i.playerA.name === name || i.playerB.name === name).length
 }
 
 /** Return `true` if the player is the winer in the game, otherwise `false` */
@@ -18,12 +17,12 @@ const isWinner = (result, name) => {
 
 /** Calculate the win rate of a player */
 const winRate = (results, name) => {
-  return filter(results, isWinner(results, name)).length / totalGames(results, name) * 100
+  return _.filter(results, isWinner(results, name)).length / totalGames(results, name) * 100
 }
 
 /** Return aggregated statistics of hands played in games of a player as a `Dictionary` (hand -> count) */
 const mostPlayedHand = (results, name) => {
-  return countBy(filter(results, i => i.playerA.name === name || i.playerB.name === name).map(i => (i.playerA.name === name) ? i.playerA.played : i.playerB.played), identity)
+  return _.countBy(_.filter(results, i => i.playerA.name === name || i.playerB.name === name).map(i => (i.playerA.name === name) ? i.playerA.played : i.playerB.played), _.identity)
 }
 
 export default {

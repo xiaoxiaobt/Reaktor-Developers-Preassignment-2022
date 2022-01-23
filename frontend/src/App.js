@@ -4,7 +4,10 @@ import React, { useState, useEffect } from 'react'
 // import Blog from './components/Blog'
 // import Notification from './components/Notification'
 // import Togglable from './components/Togglable'
-// import NewBlog from './components/NewBlog'
+import Result from './components/Result'
+import Status from './components/Status'
+import User from './components/User'
+import Users from './components/Users'
 import Navigation from './components/Navigation'
 // import loginService from './services/login'
 import {
@@ -30,15 +33,30 @@ const App = () => {
   return (
     <div>
       <Container>
-        <Navigation/>
+        <Navigation />
         <Routes>
-          <Route path="/blogs/:name">
+          {/* Show result of a single play */}
+          <Route path="/results/:id">
+            <Result />
           </Route>
-          <Route path="/users/:id">
+
+          {/* Show statistics of a single player */}
+          <Route path="/users/:name">
+            <User />
           </Route>
-          <Route path="/users">
+
+          {/* Show all plays (must be limited somehow) */}
+          <Route exact path="/status">
+            <Status />
           </Route>
-          <Route path="/">
+
+          {/* Show all players */}
+          <Route exact path="/users">
+            <Users />
+          </Route>
+
+          {/* TBD */}
+          <Route exact path="/">
           </Route>
         </Routes>
       </Container>
