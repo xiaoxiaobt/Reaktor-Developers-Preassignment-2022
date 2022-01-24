@@ -8,7 +8,7 @@
 		"files.exclude": {
 			"**/node_modules": true,
 			// "**/.github": true,
-			"**/.eslintrc.js": true,
+			// "**/.eslintrc.js": true,
 			"**/package-lock.json": true
 		}
 	}

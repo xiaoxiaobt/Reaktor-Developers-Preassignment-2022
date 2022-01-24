@@ -14,13 +14,13 @@ import {
   Routes,
   Route,
   Link,
-  useRouteMatch
+  useMatch
 } from 'react-router-dom'
 // import { notifyWith } from './reducers/notificationReducer'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { createBlog, initializeBlogs, addComment } from './reducers/blogReducer'
 // import { handleLike } from './reducers/blogReducer'
-import Container from '@material-ui/core/Container'
+import Container from '@mui/material/Container'
 
 const App = () => {
   // const [username, setUsername] = useState('')
@@ -37,22 +37,22 @@ const App = () => {
         <Routes>
           {/* Show result of a single play */}
           <Route path="/results/:id">
-            <Result />
+            {/* <Result /> */}
           </Route>
 
           {/* Show statistics of a single player */}
           <Route path="/users/:name">
-            <User />
+            {/* <User /> */}
           </Route>
 
           {/* Show all plays (must be limited somehow) */}
           <Route exact path="/status">
-            <Status />
+            {/* <Status /> */}
           </Route>
 
           {/* Show all players */}
           <Route exact path="/users">
-            <Users />
+            {/* <Users /> */}
           </Route>
 
           {/* TBD */}
