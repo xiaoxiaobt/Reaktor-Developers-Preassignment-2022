@@ -60,7 +60,7 @@ with client.start_session(causal_consistency=True) as session:
             results.insert_many(
                 data_json['data'], ordered=False, session=session)
 
-        except pymongo.errors.BulkWriteError or TypeError:
+        except (pymongo.errors.BulkWriteError, TypeError):
             final_count: int = results.count_documents({}, session=session)
             print(
                 f"Inserted {final_count - initial_count} new documents")
