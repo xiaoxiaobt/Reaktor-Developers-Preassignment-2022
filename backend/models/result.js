@@ -3,14 +3,20 @@ const mongoose = require('mongoose')
 const resultSchema = new mongoose.Schema({
   t: Date,
   playerA: {
-    name: String,
+    name: {
+      type: String,
+      index: true
+    },
     played: {
       type: String,
       enum: ['ROCK', 'PAPER', 'SCISSORS']
     }
   },
   playerB: {
-    name: String,
+    name: {
+      type: String,
+      index: true
+    },
     played: {
       type: String,
       enum: ['ROCK', 'PAPER', 'SCISSORS']
@@ -26,4 +32,9 @@ resultSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Result', resultSchema)
+const Result = mongoose.model('Result', resultSchema)
+
+Result.watch().
+  on('change', data => console.log(new Date(), data))
+
+module.exports = Result

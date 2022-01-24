@@ -3,7 +3,8 @@ const Result = require('../models/result')
 
 
 resultsRouter.get('/', async (request, response) => {
-  const results = await Result.find({}).limit(10)
+  const start = Math.abs(Number(request.query.start)) | 0
+  const results = await Result.find({}).skip(start).limit(50)
   response.json(results)
 })
 
