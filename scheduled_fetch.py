@@ -4,6 +4,7 @@ import pymongo
 from urllib.request import urlopen
 from dotenv import load_dotenv
 from datetime import datetime
+from bson.objectid import ObjectId
 load_dotenv()
 
 """
@@ -37,7 +38,9 @@ with client.start_session(causal_consistency=True) as session:
 
         # Change data to desired formats
         for x in data_json['data']:
-            x["_id"] = x.pop('gameId')
+            # To make the gameID 24 characters long
+            # Using timestamp is also fine but it's not unique
+            x["_id"] = ObjectId(x.pop('gameId').zfill(24))
             # Here this actually should be fromtimestamp cuz with fromtimestamp it's in Finnish time
             # x["t"] = datetime.utcfromtimestamp(x["t"]/1000)
             x["t"] = datetime.fromtimestamp(x["t"]/1000)
