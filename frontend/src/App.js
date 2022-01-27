@@ -9,17 +9,13 @@ import Home from './components/Home'
 import User from './components/User'
 import Users from './components/Users'
 import Navigation from './components/Navigation'
-// import loginService from './services/login'
 import {
   Routes,
   Route,
   Link,
   useMatch
 } from 'react-router-dom'
-// import { notifyWith } from './reducers/notificationReducer'
 // import { useDispatch, useSelector } from 'react-redux'
-// import { createBlog, initializeBlogs, addComment } from './reducers/blogReducer'
-// import { handleLike } from './reducers/blogReducer'
 import Container from '@mui/material/Container'
 
 const App = () => {
@@ -36,30 +32,19 @@ const App = () => {
         <Navigation />
         <Routes>
           {/* Show result of a single play */}
-          <Route path="/results/:id">
-            {/* <Result /> */}
-          </Route>
+          <Route path="/results/:id" element={<Result />} />
 
           {/* Show statistics of a single player */}
-          <Route path="/users/:name">
-            {/* <User /> */}
-          </Route>
-
-          {/* Show all plays (must be limited somehow) */}
-          <Route exact path="/status">
-            {/* <Status /> */}
-          </Route>
+          <Route path="/users/:name" element={<User />} />
 
           {/* Show all players */}
-          <Route exact path="/users">
-            {/* <Users /> */}
-          </Route>
+          <Route exact path="/users" element={<Users />} />
 
-          {/* TBD */}
-          <Route exact path="/" element={<Home/>}/>
+          {/* Show all plays (must be limited somehow) */}
+          <Route exact path="/" element={<Home />} />
         </Routes>
       </Container>
-    </div>
+    </div >
   )
 }
 

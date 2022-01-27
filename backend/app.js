@@ -5,6 +5,7 @@ const app = express()
 const cors = require('cors')
 const resultsRouter = require('./controllers/results')
 const usersRouter = require('./controllers/users')
+const reaktorRouter = require('./controllers/reaktor')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
@@ -27,6 +28,7 @@ app.use(middleware.requestLogger)
 
 app.use('/api/results', resultsRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/reaktor/rps/history', reaktorRouter)
 // app.use('/api/login', loginRouter)
 
 // if (process.env.NODE_ENV === 'test') {

@@ -9,8 +9,7 @@ resultsRouter.get('/', async (request, response) => {
 })
 
 resultsRouter.get('/:id', async (request, response) => {
-  const result = await Result.findById(request.params.id)
-  console.log(result)
+  const result = await Result.findById(request.params.id.padStart(24, '0')).count() > 0
   response.json(result)
 })
 
