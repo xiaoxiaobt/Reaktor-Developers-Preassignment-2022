@@ -10,6 +10,7 @@ resultsRouter.get('/', async (request, response) => {
 
 resultsRouter.get('/:id', async (request, response) => {
   const result = await Result.findById(request.params.id)
+  console.log(result)
   response.json(result)
 })
 

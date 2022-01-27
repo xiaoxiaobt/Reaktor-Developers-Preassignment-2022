@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
-// import { handleLike, handleRemove } from '../reducers/resultReducer'
-import { useDispatch } from 'react-redux'
-import { useMatch } from 'react-router-dom'
 
-const Result = () => {
-  const dispatch = useDispatch()
-  // const [visible, setVisible] = useState(false)
-  const match = useMatch('/results/:id')
-  const gameID = match.params.id
+
+const Card = ({ props }) => {
 
   // const resultStyle = {
   //   paddingTop: 10,
@@ -18,8 +12,8 @@ const Result = () => {
   // }
 
   // const label = visible ? 'hide' : 'view'
-
-  return (<div>{gameID}</div>)
+  console.log(props)
+  return (<div><p>Player A: {props.playerA?.name} played {props.playerA?.played}, Player B: {props.playerB?.name} played {props.playerB?.played}</p></div>)
   // return (
   //   <div style={resultStyle} className='result'>
   //     <div>
@@ -39,4 +33,4 @@ const Result = () => {
   // )
 }
 
-export default Result
+export default Card

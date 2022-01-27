@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react'
 // import Notification from './components/Notification'
 // import Togglable from './components/Togglable'
 import Result from './components/Result'
-import Status from './components/Status'
+import Home from './components/Home'
 import User from './components/User'
 import Users from './components/Users'
 import Navigation from './components/Navigation'
@@ -56,8 +56,7 @@ const App = () => {
           </Route>
 
           {/* TBD */}
-          <Route exact path="/">
-          </Route>
+          <Route exact path="/" element={<Home/>}/>
         </Routes>
       </Container>
     </div>

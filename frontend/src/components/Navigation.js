@@ -6,7 +6,7 @@ const Navigation = () => {
     <>
       <p>
         <Link to={'/'} style={{ padding: '10px' }}>Home</Link>
-        <Link to={'/results'} style={{ padding: '10px' }}>Results</Link>
+        <Link to={'/status'} style={{ padding: '10px' }}>Results</Link>
         <Link to={'/users'} style={{ padding: '10px' }}>Users</Link>
       </p>
     </>
