@@ -2,8 +2,8 @@ import axios from 'axios'
 
 const backendUrl = 'http://localhost:3001/api'
 
-const getAllFromDatabase = () => {
-  const request = axios.get(backendUrl + '/results')
+const fetchFromDatabase = (start) => {
+  const request = axios.get(backendUrl + `/results?start=${start}`)
   return request.then(response => response.data)
 }
 
@@ -32,4 +32,9 @@ const getRemaining = async () => {
   return remainingData
 }
 
-export default { getAllFromDatabase, getRemaining }
+const getNoDocuments = () => {
+  const request = axios.get(backendUrl + '/results/count')
+  return request.then(response => response.data)
+}
+
+export default { fetchFromDatabase, getRemaining, getNoDocuments }
