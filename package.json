@@ -1,4 +1,8 @@
 {
+    "engines": {
+        "npm": ">=8.0.0",
+        "node": ">=16.0.0"
+    },
     "dependencies": {
         "axios": "^0.25.0",
         "cors": "^2.8.5",
