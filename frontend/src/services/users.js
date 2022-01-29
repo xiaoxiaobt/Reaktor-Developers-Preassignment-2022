@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const backendUrl = 'http://0.0.0.0:3001/api/users'
+const backendUrl = 'https://0.0.0.0:3001/api/users'
 
 const getAllUsers = () => {
   const request = axios.get(backendUrl)
