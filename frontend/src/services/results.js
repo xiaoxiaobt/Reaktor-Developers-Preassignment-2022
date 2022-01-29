@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const backendUrl = 'http://localhost:3001/api'
+const backendUrl = '/api'
 
 const getRemaining = async () => {
   const remainingData = []
