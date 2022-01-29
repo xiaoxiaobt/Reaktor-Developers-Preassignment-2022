@@ -23,32 +23,28 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
 
 app.use(cors())
 
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, '../frontend/build')))
-
-// app.use(express.static('build'))
+if (config.NODE_ENV === 'development') {
+  // Serve static files from the React frontend app
+  app.use(express.static(path.join(__dirname, '../frontend/build')))
+} else {
+  app.use(express.static('build'))
+}
 app.use(express.json())
 app.use(middleware.requestLogger)
-
-
-
 
 app.use('/api/results', resultsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/reaktor/rps/history', reaktorRouter)
 
+if (config.NODE_ENV === 'development') {
+  // AFTER defining routes: Anything that doesn't match what's above, send back index.html
+  // (the beginning slash ('/') in the string is important!)
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../frontend/build/index.html'))
+  })
+}
 
-
-// AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/../frontend/build/index.html'))
-})
-
-
-// app.use(middleware.unknownEndpoint)
-// app.use(middleware.errorHandler)
-
-
-
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
 
 module.exports = app

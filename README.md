@@ -4,6 +4,12 @@
 
 <https://www.reaktor.com/assignment-2022-developers/>
 
+The app can be accessed from:
+
+<https://reaktor-preassignment-dev-2022.herokuapp.com/>
+
+(**Note:** The app is deployed on a free dyno, so it may take some time to start)
+
 ### Done
 
 - [x] Scheduled trigger for loading history to the database
@@ -17,6 +23,7 @@
   - [x] User data API
   - [x] Bridge for Reaktor API to prevent CORS issues
   - [ ] User aggregated data API
+- [x] Deployment
 
 - [ ] Frontend
   - [x] Basic components
@@ -24,7 +31,6 @@
   - [x] Infinite scroll
   - [x] Players in alphabetical list
   - [ ] Aggregated data layout
-- [ ] Deployment
 - [ ] Stylesheet and UI improvements
 - [ ] Comments, README, and documentation
 - [ ] Performance improvements
