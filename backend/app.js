@@ -23,7 +23,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
 
 app.use(cors())
 
-if (config.NODE_ENV === 'development') {
+if (config.NODE_ENV === 'production') {
   // Serve static files from the React frontend app
   app.use(express.static(path.join(__dirname, '../frontend/build')))
 } else {
@@ -36,7 +36,7 @@ app.use('/api/results', resultsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/reaktor/rps/history', reaktorRouter)
 
-if (config.NODE_ENV === 'development') {
+if (config.NODE_ENV === 'production') {
   // AFTER defining routes: Anything that doesn't match what's above, send back index.html
   // (the beginning slash ('/') in the string is important!)
   app.get('*', (req, res) => {
