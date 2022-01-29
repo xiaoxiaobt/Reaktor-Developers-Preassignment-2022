@@ -1,4 +1,4 @@
-name: Automatic fetching data
+name: Scheduled task
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  insert-new-documents:
+  insert-new-documents-to-databases:
     runs-on: ubuntu-latest
     env:
       MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
@@ -19,6 +19,13 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-      - run: pip install -r requirements.txt
+      - name: install Python dependencies
+        run: pip install -r requirements.txt
       - name: add new documents to mongodb
         run: python scheduled_fetch.py
+
+  wake-up-dyno:
+    runs-on: ubuntu-latest
+    steps:
+      - name: access website
+        run: curl https://reaktor-preassignment-dev-2022.herokuapp.com/
