@@ -27,8 +27,8 @@
   },
   "proxy": "http://0.0.0.0:3001",
   "scripts": {
-    "start": "cross-var react-scripts start --PORT=${PORT}",
-    "build": "cross-var react-scripts build --PORT=${PORT}",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
