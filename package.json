@@ -20,6 +20,6 @@
         "frontend": "cd frontend && npm start",
         "backend": "cd backend && nodemon app.js",
         "dev": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run frontend\"",
-        "heroku-postbuild": "cd frontend && npm install && npm run build"
+        "heroku-postbuild": "cd frontend && npm config set fund false && npm install && npm run build"
     }
 }
