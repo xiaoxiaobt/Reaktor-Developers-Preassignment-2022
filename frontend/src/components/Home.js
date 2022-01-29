@@ -2,36 +2,28 @@ import React, { useState, useEffect } from 'react'
 // import { useDispatch } from 'react-redux'
 // import Result from '../models/result'
 import resultService from '../services/results'
-import Card from './Card'
+import ResultEntry from './ResultEntry'
 import useWebSocket from 'react-use-websocket'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import List from '@mui/material/List'
 
 const Home = () => {
   // const dispatch = useDispatch()
   const socketUrl = 'wss://bad-api-assignment.reaktor.com/rps/live'
   const [results, setResults] = useState([])
-  const [resultCursor, setResultCursor] = useState(0)
+
   const [ongoing, setOngoing] = useState([])
   const { lastJsonMessage } = useWebSocket(socketUrl)
   const [hasMore, setHasMore] = useState(true)
-  const noDocumentsInDatabase = resultService.getNoDocuments()
+  const [resultCursor, setResultCursor] = useState(0)
 
-  const fetchMoreData = () => {
-    setResultCursor(prev => prev + 50)
-    resultService.fetchFromDatabase(resultCursor).then(records => {
-      setResults(prev => prev.concat(records))
-      console.log('Loaded ' + records.length + ' results from database')
-    })
-    if (resultCursor >= noDocumentsInDatabase) {
-      setHasMore(false)
-    }
-  }
-
-  useEffect(() => { fetchMoreData() }, [])
+  useEffect(() => {
+    resultService.fetchMoreData(setResults, setHasMore, resultCursor, setResultCursor)
+  }, [])
 
   useEffect(() => {
     resultService.getRemaining().then(remainingResults => {
-      setResults(prev => prev.concat(remainingResults))
+      setResults(prev => remainingResults.concat(prev))
       console.log('Loaded ' + remainingResults.length + ' results from history')
     })
   }, [])
@@ -40,38 +32,39 @@ const Home = () => {
     if (lastJsonMessage !== null) {
       const message = JSON.parse(lastJsonMessage)
       if (message.type === 'GAME_RESULT') {
-        setOngoing(prev => prev.filter(m => m.gameId !== message.gameId))
-        setResults(prev => prev.concat({ ...message, id: message.gameId }))
+        setOngoing(prev => prev.filter(m => m.id !== message.gameId))
+        setResults(prev => [{ ...message, id: message.gameId }, ...prev.filter(m => m.id !== message.gameId)])
       } else {
-        setOngoing(prev => prev.concat(message))
+        setOngoing(prev => prev.concat({ ...message, id: message.gameId }))
       }
     }
   }, [lastJsonMessage, setOngoing])
 
   return (
     <div>
-      <h1>On-going</h1>
-      <ul>
-        {ongoing
-          .map((message, idx) => <Card key={idx} props={message} />)}
-      </ul>
-      <h1>Game history</h1>
-      <ul>
-        <InfiniteScroll
-          dataLength={results.length}
-          next={fetchMoreData}
-          hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
-          endMessage={
-            <p style={{ textAlign: 'center' }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
-        >
-          {results.map(result => <Card key={result.id} props={result} />)}
-        </InfiniteScroll>
-        {/* {results.map(result => <Card key={result.id} props={result} />)} */}
-      </ul>
+      <h1 id="ongoing">On-going</h1>
+      <center>
+        <List sx={{ width: '80%' }}>
+          {ongoing
+            .map((message, idx) => <ResultEntry key={idx} props={message} />)}
+        </List>
+      </center>
+      <h1 id="history">Game history</h1>
+      <InfiniteScroll
+        dataLength={results.length}
+        next={_ => resultService.fetchMoreData(setResults, setHasMore, resultCursor, setResultCursor)}
+        hasMore={hasMore}
+        loader={<center><h4>Loading...</h4></center>}
+        endMessage={
+          <p style={{ textAlign: 'center' }}><b>Yay! You have seen it all</b></p>
+        }
+      >
+        <center>
+          <List sx={{ width: '80%' }}>
+            {results.map((result, idx) => <ResultEntry key={idx} props={result} />)}
+          </List>
+        </center>
+      </InfiniteScroll>
     </div>
   )
 }

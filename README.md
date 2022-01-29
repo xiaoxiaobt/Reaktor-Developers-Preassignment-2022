@@ -35,3 +35,4 @@
 - In rare cases, if user keeps scrolling, data cannot be loaded properly due to memeory usage issue caused by `skip()`. This can be prevented by using checking timestamp instead, however, extra efforts need to be taken into account for instance if there are two records with the same timestamp.
 - A bug may exist when loading the differnece between the database and the current history data. Sometimes only a few get loaded, and it is not clear why.
 - Data need to be displayed with the newest data on top.
+- Duplicate entries are possible but reason not clear.

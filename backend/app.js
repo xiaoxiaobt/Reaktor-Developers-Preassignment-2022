@@ -9,6 +9,7 @@ const reaktorRouter = require('./controllers/reaktor')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
+const path = require('path')
 
 
 logger.info('connecting to', config.MONGODB_URI)
@@ -29,7 +30,19 @@ app.use('/api/results', resultsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/reaktor/rps/history', reaktorRouter)
 
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, '../frontend/build')))
+
+// AFTER defining routes: Anything that doesn't match what's above, send back index.html; (the beginning slash ('/') in the string is important!)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../frontend/build/index.html'))
+})
+
+
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
+
+
+
 
 module.exports = app

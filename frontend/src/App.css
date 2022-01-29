@@ -1,0 +1,63 @@
+a {
+    text-decoration: none; 
+    color: black; 
+}
+
+li.MuiListItem-root {
+    border-radius: 20px;
+}
+
+li.MuiListItem-root:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+a.userlink {
+    text-decoration: underline;
+    color: rgb(14, 89, 226);
+}
+
+div.MuiListItemText-root {
+    padding: 20px; 
+    float: left; 
+    width: 40%; 
+}
+
+div.MuiListItemText-root.left {
+    text-align: left;
+}
+
+div.MuiListItemText-root.right {
+    text-align: right;
+}
+
+div.resultEntry {
+    display: 'contents';
+    text-align: 'center';
+}
+
+li.MuiDivider-root {
+    width: 95%;
+}
+
+.playerName:hover{
+    color: darkturquoise;
+}
+
+.navitem {
+    padding-right: 20px;
+    font-size: 30px;
+    vertical-align: middle;
+    color: white;
+}
+
+.sticky-nav {
+    background-color: rgba(0,0,0,0.4);
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 50px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding-left: 160px;
+    z-index: 999;
+}

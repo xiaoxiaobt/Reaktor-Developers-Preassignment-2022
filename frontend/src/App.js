@@ -13,8 +13,9 @@ const App = () => {
 
   return (
     <div>
+      <Navigation />
       <Container>
-        <Navigation />
+
         <Routes>
           {/* Show result of a single play */}
           <Route path="/results/:id" element={<Result />} />

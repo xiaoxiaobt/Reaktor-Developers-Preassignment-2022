@@ -2,11 +2,6 @@ import axios from 'axios'
 
 const backendUrl = 'http://localhost:3001/api'
 
-const fetchFromDatabase = (start) => {
-  const request = axios.get(backendUrl + `/results?start=${start}`)
-  return request.then(response => response.data)
-}
-
 const getRemaining = async () => {
   const remainingData = []
   var cursor = '/rps/history'
@@ -14,17 +9,14 @@ const getRemaining = async () => {
     const request = await axios.get(backendUrl + '/reaktor' + cursor)
     const pageData = await request.data.data
     cursor = request.data.cursor
-    console.log(pageData)
     for (const x of pageData) {
-      console.log(x)
       const exist = await axios.get(backendUrl + '/results/' + x.gameId)
-      console.log(exist)
       if (exist.data) {
         cursor = null
-        console.log('found')
+        console.log('Data entry already exists')
         break
       } else {
-        console.log('add one')
+        console.log('Add one new entry to temporary array')
         remainingData.push({ ...x, id: x.gameId })
       }
     }
@@ -37,4 +29,16 @@ const getNoDocuments = () => {
   return request.then(response => response.data)
 }
 
-export default { fetchFromDatabase, getRemaining, getNoDocuments }
+const fetchMoreData = async (setResults, setHasMore, resultCursor, setResultCursor) => {
+  setResultCursor(prev => prev + 50)
+  if (resultCursor >= getNoDocuments()) {
+    setHasMore(false)
+  }
+  const request = await axios.get(backendUrl + `/results?start=${resultCursor}`)
+  const response = await request.data
+  setResults(prev => response.concat(prev))
+  console.log('Loaded ' + response.length + ' more results from database')
+}
+
+
+export default { getRemaining, fetchMoreData }

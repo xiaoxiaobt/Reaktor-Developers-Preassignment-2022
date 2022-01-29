@@ -15,7 +15,6 @@ const Users = () => {
         }, Object.create(null))
 
       setUsers(Object.entries(a))
-      console.log(Object.entries(a))
     })
   }, [])
 
@@ -28,7 +27,7 @@ const Users = () => {
           {
             arrayOfPlayers.map(name =>
               <ul key={name}>
-                <Link to={`/users/${name}`}>{name}</Link>
+                <Link class='userlink' to={`/users/${name}`}>{name}</Link>
               </ul>
             )
           }
