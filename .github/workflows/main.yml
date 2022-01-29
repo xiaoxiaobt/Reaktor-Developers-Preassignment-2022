@@ -28,4 +28,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: access website
-        run: curl https://reaktor-preassignment-dev-2022.herokuapp.com/
+        run: ping -c 1 reaktor-preassignment-dev-2022.herokuapp.com
