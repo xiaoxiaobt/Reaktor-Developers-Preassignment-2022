@@ -10,6 +10,7 @@
 			// "**/.github": true,
 			// "**/.eslintrc.js": true,
 			"**/package-lock.json": true
-		}
+		},
+		"editor.tabSize": 2
 	}
 }

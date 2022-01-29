@@ -1,0 +1,8 @@
+# Ignored by Heroku
+README.md
+reaktor-preassignment.code-workspace
+requirements.txt
+scheduled_fetch.py
+.gitignore
+/.github
+**/.eslintrc.js
