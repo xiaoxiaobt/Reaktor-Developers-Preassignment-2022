@@ -10,7 +10,6 @@ import Container from '@mui/material/Container'
 // import { useDispatch, useSelector } from 'react-redux'
 
 const App = () => {
-
   return (
     <div>
       <Navigation />
