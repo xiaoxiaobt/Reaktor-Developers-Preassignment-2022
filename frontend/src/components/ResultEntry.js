@@ -20,13 +20,13 @@ const ResultEntry = ({ props }) => {
       <ListItem component={Link} to={`/results/${props.id}`} disablePadding>
         {leftAvatar}
         <div className="playerContainer">
-          <Link to={`/user/${playerA.name}`} id="leftPlayerName">
+          <Link to={`/users/${playerA.name}`} id="leftPlayerName">
             <ListItemText primary={playerA.name + (playerAwins ? '🏆' : '')} />
           </Link>
         </div>
         <ListItemText primary='V.S.' id="centervs" />
         <div className="playerContainer">
-          <Link to={`/user/${playerB.name}`} id="rightPlayerName">
+          <Link to={`/users/${playerB.name}`} id="rightPlayerName">
             <ListItemText primary={(playerBwins ? '🏆' : '') + playerB.name} />
           </Link>
         </div>
