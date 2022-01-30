@@ -15,13 +15,14 @@ a {
     background-color: rgba(255,255,255,0.8);
     display: 'contents';
     text-align: 'center';
+    position: relative;
 }
 
-li.MuiListItem-root {
+.MuiListItem-root {
     border-radius: 20px;
 }
 
-li.MuiListItem-root:hover {
+.MuiListItem-root:hover {
     background-color: rgba(0, 0, 0, 0.08);
 }
 
@@ -30,29 +31,51 @@ a.userlink {
     color: rgb(14, 89, 226);
 }
 
-div.MuiListItemText-root {
-    padding: 20px; 
-    float: left; 
-    width: 40%; 
-}
-
-div.MuiListItemText-root.left {
+#leftPlayerName {
     text-align: left;
+    float: left; 
+    white-space: nowrap;
+    padding: 30px; 
+    width: 30%;
 }
 
-div.MuiListItemText-root.right {
+#rightPlayerName {
     text-align: right;
+    float: right;
+    white-space: nowrap;
+    padding: 30px; 
+    width: 30%;
 }
 
-div.resultEntry {
+#leftPlayerName div {
+    float: left;
+    width: max-content;
+}
 
+#rightPlayerName div {
+    float: right;
+    width: max-content;
+}
+
+#centervs {
+    /* position: absolute; */
+    /* left: 50%; */
+    /* left: 50%; */
+    text-align: center;
+    /* float: center; */
+    /* float: 50%; */
+    /* width: max-content; */
 }
 
 li.MuiDivider-root {
     width: 95%;
 }
 
-.playerName:hover{
+#leftPlayerName:hover {
+    color: darkturquoise;
+}
+
+#rightPlayerName:hover {
     color: darkturquoise;
 }
 

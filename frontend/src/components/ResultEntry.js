@@ -5,6 +5,7 @@ import Divider from '@mui/material/Divider'
 import { Link } from 'react-router-dom'
 import helpers from '../utils/helpers'
 import avatars from './Avatars'
+import { display } from '@mui/system'
 
 
 const ResultEntry = ({ props }) => {
@@ -17,16 +18,24 @@ const ResultEntry = ({ props }) => {
   const playerBwins = helpers.isWinner(playerB, playerA)
 
   return (
-    <div className='resultEntry'>
+    <li className='resultEntry'>
       <ListItem component={Link} to={`/results/${props.id}`}>
         {leftAvatar}
-        <ListItemText primary={playerA.name + (playerAwins ? '🏆' : '')} className="left playerName" />
-        <ListItemText primary="V.S." style={{ textAlign: 'center' }} />
-        <ListItemText primary={(playerBwins ? '🏆' : '') + playerB.name} className="right playerName" />
+        <div style={{ width: '30%' }}>
+          <Link to={`/user/${playerA.name}`} id="leftPlayerName">
+            <ListItemText primary={playerA.name + (playerAwins ? '🏆' : '')} />
+          </Link>
+        </div>
+        <ListItemText primary='V.S.' id="centervs" />
+        <div style={{ width: '30%' }}>
+          <Link to={`/user/${playerB.name}`} id="rightPlayerName">
+            <ListItemText primary={(playerBwins ? '🏆' : '') + playerB.name} />
+          </Link>
+        </div>
         {rightAvatar}
       </ListItem>
       <Divider component="li" />
-    </div >
+    </li>
   )
 }
 
