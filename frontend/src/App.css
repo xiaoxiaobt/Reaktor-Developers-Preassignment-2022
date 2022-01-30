@@ -12,18 +12,16 @@ a {
 
 .resultEntry {
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     background-color: rgba(255,255,255,0.8);
     display: 'contents';
     text-align: 'center';
     position: relative;
-}
-
-.MuiListItem-root {
     border-radius: 20px;
 }
 
-.MuiListItem-root:hover {
-    background-color: rgba(0, 0, 0, 0.08);
+.resultEntry:hover {
+    background-color: rgba(56, 150, 212, 0.5);
 }
 
 a.userlink {
@@ -33,7 +31,7 @@ a.userlink {
 
 #leftPlayerName {
     text-align: left;
-    float: left; 
+    float: left;
     white-space: nowrap;
     padding: 30px; 
     width: 30%;
@@ -50,6 +48,7 @@ a.userlink {
 #leftPlayerName div {
     float: left;
     width: max-content;
+    font-size: 2rem;
 }
 
 #rightPlayerName div {
@@ -58,25 +57,21 @@ a.userlink {
 }
 
 #centervs {
-    /* position: absolute; */
-    /* left: 50%; */
-    /* left: 50%; */
     text-align: center;
-    /* float: center; */
-    /* float: 50%; */
-    /* width: max-content; */
 }
 
-li.MuiDivider-root {
+.MuiDivider-root {
     width: 95%;
 }
 
-#leftPlayerName:hover {
-    color: darkturquoise;
+#leftPlayerName div :hover {
+    background:rgba(255,255,255,0.8);
+    border-radius: 5px;
 }
 
-#rightPlayerName:hover {
-    color: darkturquoise;
+#rightPlayerName div :hover {
+    background:rgba(255,255,255,0.8);
+    border-radius: 5px;
 }
 
 .navitem {
@@ -89,9 +84,8 @@ li.MuiDivider-root {
 
 .sticky-nav {
     background-color: rgba(0,0,0,0.4);
-    position: sticky;
     top: 0;
-    left: 0;
+    position: sticky;
     height: 50px;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
@@ -100,7 +94,39 @@ li.MuiDivider-root {
 }
 
 h1 {
-    display: inline-block;
+    width: max-content;
     background-color: rgba(255,255,255,0.8);
     padding: 5px;
+}
+
+h2 {
+    width: max-content;
+    background-color: rgba(255,255,255,0.8);
+    padding: 5px;
+}
+
+.playerContainer {
+    width: 30%;
+}
+
+.entryList {
+    width: 80%;
+}
+
+a.MuiChip-root {
+    margin: 8px;
+    padding: 8px;
+    font-size: 24px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    background-color: rgba(255,255,255,0.8);
+}
+
+a.MuiChip-root:hover {
+    background-color: rgba(56, 150, 212, 0.5);
+    cursor: pointer;
+}
+
+span.MuiTypography-root {
+    font-size: 20px;
 }
