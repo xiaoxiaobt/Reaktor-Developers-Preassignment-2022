@@ -14,7 +14,10 @@ const Home = ({ results, ongoing, hasMore, setResults,
       <center>
         <List className="entryList">
           {ongoing
-            .map((message, idx) => <ResultEntry key={idx} props={message} />)}
+            .map((message, idx) =>
+              <ResultEntry key={idx} playerA={message.playerA}
+                playerB={message.playerB} id={message.id} type={message.type}/>)
+          }
         </List>
       </center>
       <h1 id="history">Game history</h1>

@@ -7,18 +7,20 @@ import helpers from '../utils/helpers'
 import avatars from './Avatars'
 
 
-const ResultEntry = ({ props }) => {
-  const playerA = props.playerA
-  const playerB = props.playerB
-  const leftAvatar = props.type === 'GAME_BEGIN' ? avatars.PENDING : playerA.played === 'ROCK' ? avatars.ROCKLEFT : playerA.played === 'PAPER' ? avatars.PAPERLEFT : avatars.SCISSIORSLEFT
-  const rightAvatar = props.type === 'GAME_BEGIN' ? avatars.PENDING : playerB.played === 'ROCK' ? avatars.ROCKRIGHT : playerB.played === 'PAPER' ? avatars.PAPERRIGHT : avatars.SCISSIORSRIGHT
+const ResultEntry = ({ playerA, playerB, id, type }) => {
+  const leftAvatar = type === 'GAME_BEGIN' ? avatars.PENDING :
+    playerA.played === 'ROCK' ? avatars.ROCKLEFT :
+      playerA.played === 'PAPER' ? avatars.PAPERLEFT : avatars.SCISSIORSLEFT
+  const rightAvatar = type === 'GAME_BEGIN' ? avatars.PENDING :
+    playerB.played === 'ROCK' ? avatars.ROCKRIGHT :
+      playerB.played === 'PAPER' ? avatars.PAPERRIGHT : avatars.SCISSIORSRIGHT
 
   const playerAwins = helpers.isWinner(playerA, playerB)
   const playerBwins = helpers.isWinner(playerB, playerA)
 
   return (
     <li className='resultEntry'>
-      <ListItem component={Link} to={`/results/${props.id}`} disablePadding>
+      <ListItem component={Link} to={`/results/${id}`} disablePadding>
         {leftAvatar}
         <div className="playerContainer">
           <Link to={`/user/${playerA.name}`} id="leftPlayerName">
