@@ -2,6 +2,7 @@ const usersRouter = require('express').Router()
 const Result = require('../models/result')
 const helpers = require('../utils/helpers')
 
+/** Return names of all players as an array */
 usersRouter.get('/', async (_request, response) => {
   const playerAUnique = await Result.distinct('playerA.name')
   const playerBUnique = await Result.distinct('playerB.name')
@@ -9,6 +10,7 @@ usersRouter.get('/', async (_request, response) => {
   response.json(results)
 })
 
+/** Return aggregated statistics for results in database */
 usersRouter.get('/:name', async (request, response) => {
   const name = request.params.name
   const results = await Result.find({ $or: [{ 'playerA.name': name }, { 'playerB.name': name }] }, { _id: 0, t: 0 })

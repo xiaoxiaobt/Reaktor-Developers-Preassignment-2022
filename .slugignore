@@ -5,4 +5,5 @@ requirements.txt
 scheduled_fetch.py
 .gitignore
 /.github
+/screenshots
 **/.eslintrc.js

@@ -8,6 +8,11 @@ The app can be accessed from:
 
 (**Note:** The app is deployed on a free dyno, so it may take some time to start)
 
+## Screenshots
+
+![homepage](/screenshots/homepage.png)
+![players](/screenshots/players.png)
+
 ## Tasks
 
 - [x] Scheduled trigger for loading history to the database

@@ -1,6 +1,7 @@
 const config = require('../utils/config')
 const mongoose = require('mongoose')
 
+/** Schema used for storing match results */
 const resultSchema = new mongoose.Schema({
   t: Date,
   playerA: {

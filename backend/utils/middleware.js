@@ -1,3 +1,4 @@
+/** Middleware that logs all requests to backend */
 const requestLogger = (request, _response, next) => {
   console.log('Method:', request.method)
   console.log('Path:  ', request.path)
@@ -6,13 +7,14 @@ const requestLogger = (request, _response, next) => {
   next()
 }
 
+/** Middleware that handles unknown end points */
 const unknownEndpoint = (_request, response) => {
   response.status(404).send({ error: 'unknown endpoint' })
 }
 
+/** Middleware that handles and logs errors */
 const errorHandler = (error, _request, response, next) => {
   console.error(error.message)
-
   if (error.name === 'CastError' && error.kind === 'ObjectId')
     return response.status(400).send({ error: 'malformatted id' })
   else if (error.name === 'ValidationError')
