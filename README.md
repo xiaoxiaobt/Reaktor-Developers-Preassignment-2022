@@ -6,12 +6,16 @@ The app can be accessed from:
 
 <https://reaktor-preassignment-dev-2022.herokuapp.com/>
 
-(**Note:** The app is deployed on a free dyno, so it may take some time to start)
-
 ## Screenshots
 
 ![homepage](/screenshots/homepage.png)
 ![players](/screenshots/players.png)
+
+## Design choices
+
+Because using the API directly is not feasible due to the data amount, a MongoDB database is used to store the history data. A Python script is used to synchronize the data every 10 minutes. The script is also used to keep the website from hibernating, as the website is hosted on a free Heroku Dyno.
+
+When launching the application, the application first fetches 50 records from databases as well as those records that are already available on `rps/history` endpoint but not yet synchronized to the database. The application also listens to a WebSocket connection to receive new data. When the user scrolls to the end of the page, the application fetches more data from the database, so the user is able to scroll infinitely.
 
 ## Tasks
 
@@ -31,7 +35,7 @@ The app can be accessed from:
   - [x] Aggregated data layout
 - [x] Stylesheet and UI improvements
 - [x] Deployment
-- [ ] Comments and README
+- [x] Comments and README
 
 ## Known issues
 

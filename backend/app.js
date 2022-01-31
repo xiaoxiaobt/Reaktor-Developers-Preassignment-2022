@@ -22,7 +22,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
 // Allow CORS
 app.use(cors())
 
-// Serve backend and frontend on the same Heroku dyno
+// Serve backend and frontend on the same Heroku Dyno
 // https://stackoverflow.com/a/61354113/11609216
 if (config.NODE_ENV === 'production') {
   // Serve static files from the React frontend app
@@ -38,7 +38,7 @@ app.use('/api/results', resultsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/reaktor/rps/history', reaktorRouter)
 
-// Serve backend and frontend on the same Heroku dyno
+// Serve backend and frontend on the same Heroku Dyno
 // https://stackoverflow.com/a/61354113/11609216
 if (config.NODE_ENV === 'production') {
   // AFTER defining routes: Anything that doesn't match what's above, send back index.html

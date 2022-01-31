@@ -21,7 +21,7 @@ const App = () => {
   const [resultsLive, setResultsLive] = useState([])
   // All on-going matches
   const [ongoing, setOngoing] = useState([])
-  // Latetest Json received from Websocket
+  // Latest Json received from Websocket
   const { lastJsonMessage } = useWebSocket(socketUrl)
   // Scrolled to end?
   const [hasMore, setHasMore] = useState(true)
