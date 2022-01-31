@@ -1,6 +1,5 @@
 {
   "engines": {
-    "npm": ">=8.3.0",
     "node": ">=16.0.0"
   },
   "dependencies": {
