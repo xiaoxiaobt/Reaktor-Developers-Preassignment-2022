@@ -12,21 +12,28 @@ import resultService from './services/results'
 
 const App = () => {
 
+  // Websocket url
   const socketUrl = 'wss://bad-api-assignment.reaktor.com/rps/live'
   // `resultsInDatabases` includes history in the database at launch of the app
   const [resultsInDatabases, setResultsInDatabases] = useState([])
   // `resultsLive` includes history that are NOT in the databases yet
   // and results obtained from Websocket
   const [resultsLive, setResultsLive] = useState([])
+  // All on-going matches
   const [ongoing, setOngoing] = useState([])
+  // Latetest Json received from Websocket
   const { lastJsonMessage } = useWebSocket(socketUrl)
+  // Scrolled to end?
   const [hasMore, setHasMore] = useState(true)
+  // Size of the `resultsInDatabases`
   const [resultCursor, setResultCursor] = useState(0)
 
+  // Fetching 50 documents from the database as initial data
   useEffect(() => {
     resultService.fetchMoreData(setResultsInDatabases, setHasMore, resultCursor, setResultCursor)
   }, [])
 
+  // Fetching the difference between database and history, as there is a delay in updating the database
   useEffect(() => {
     resultService.getRemaining().then(remainingResults => {
       setResultsLive(prev => remainingResults.concat(prev))
@@ -34,6 +41,7 @@ const App = () => {
     })
   }, [])
 
+  // Fetching the on-going matches and game results
   useEffect(() => {
     if (lastJsonMessage !== null) {
       const message = JSON.parse(lastJsonMessage)
@@ -44,7 +52,7 @@ const App = () => {
         setOngoing(prev => prev.concat({ ...message, id: message.gameId }))
       }
     }
-  }, [lastJsonMessage, setOngoing])
+  }, [lastJsonMessage])
 
   return (
     <>

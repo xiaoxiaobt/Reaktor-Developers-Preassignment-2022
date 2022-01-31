@@ -2,6 +2,10 @@ import axios from 'axios'
 
 const backendUrl = '/api'
 
+/**
+ * Fetch the difference between databases and history,
+ * as there is a delay for info to be registered in database
+ */
 const getRemaining = async () => {
   const remainingData = []
   var cursor = '/rps/history'
@@ -24,11 +28,17 @@ const getRemaining = async () => {
   return remainingData
 }
 
-const getNoDocuments = () => {
+/**
+ * Get number of documents in the database
+ * @returns {int} Number of documents in the database
+ */
+const getNoDocuments = async () => {
   const request = axios.get(backendUrl + '/results/count')
-  return request.then(response => response.data)
+  const response = await request
+  return response.data
 }
 
+/** Fetch 50 more results from database */
 const fetchMoreData = async (setResultsInDatabases, setHasMore, resultCursor, setResultCursor) => {
   setResultCursor(prev => prev + 50)
   if (resultCursor >= getNoDocuments()) {
@@ -40,9 +50,14 @@ const fetchMoreData = async (setResultsInDatabases, setHasMore, resultCursor, se
   console.log('Loaded ' + response.length + ' more results from database')
 }
 
-const getById = (id) => {
+/**
+ * Fetch info about a match from database, where gameID is `id`
+ * @param {string} id - gameID
+ */
+const getById = async (id) => {
   const request = axios.get(backendUrl + '/results/' + id)
-  return request.then(response => response.data)
+  const response = await request
+  return response.data
 }
 
 export default { getRemaining, fetchMoreData, getById }

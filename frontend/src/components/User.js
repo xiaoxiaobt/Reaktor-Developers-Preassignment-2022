@@ -4,6 +4,12 @@ import helpers from '../utils/helpers'
 import userService from '../services/users'
 import CircularProgress from '@mui/material/CircularProgress'
 
+/**
+ * `User` shows aggregate information about a user.
+ * Statistics include all data, including those in the database and those are not.
+ * @param {object} props - props
+ * @param {object[]} props.resultsLive - results of the matches that are not in database yet
+ */
 const User = ({ resultsLive }) => {
   const match = useMatch('/users/:name')
   const playerName = match.params.name
@@ -36,6 +42,7 @@ const User = ({ resultsLive }) => {
   const totalMatchWon = totalMatchWonLive + statisticsFromDatabases.win
   const winRate = totalMatch === 0 ? 'No Statistics' : Number(100 * totalMatchWon / totalMatch).toFixed(2)
 
+  // Loading from database takes about 2 seconds
   if (statisticsFromDatabases.loading) {
     return <CircularProgress />
   }

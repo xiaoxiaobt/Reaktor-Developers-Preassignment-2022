@@ -1,6 +1,7 @@
 import React from 'react'
 import Avatar from '@mui/material/Avatar'
 
+// Avatars used in the application
 const ROCKLEFT = <Avatar alt="Rock" src="avatars/r-left.png" />
 const PAPERLEFT = <Avatar alt="Paper" src="avatars/p-left.png" />
 const SCISSIORSLEFT = <Avatar alt="Scissors" src="avatars/s-left.png" />

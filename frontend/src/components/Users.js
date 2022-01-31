@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react'
 import userService from '../services/users'
 import PlayerChip from './PlayerChip'
 
+/**
+ * `Users` list all users in alphabetical order
+ * The user list is obtained from the database,
+ * ideally it should also consider potential users
+ * that are not yet registered in the database.
+ */
 const Users = () => {
   const [users, setUsers] = useState([])
 

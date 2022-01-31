@@ -2,14 +2,23 @@ import axios from 'axios'
 
 const backendUrl = '/api/users/'
 
-const getAllUsers = () => {
+/**
+ * Fetch list of users as an array
+ */
+const getAllUsers = async () => {
   const request = axios.get(backendUrl)
-  return request.then(response => response.data)
+  const response = await request
+  return response.data
 }
 
-const getUserStatistics = (name) => {
+/**
+ * Get aggregated statistics of a user with name `name` from database
+ * @param {string} name - name of the user
+ */
+const getUserStatistics = async (name) => {
   const request = axios.get(backendUrl + name)
-  return request.then(response => response.data)
+  const response = await request
+  return response.data
 }
 
 export default { getAllUsers, getUserStatistics }
