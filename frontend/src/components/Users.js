@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import userService from '../services/users'
-import { Link } from 'react-router-dom'
-import { Chip, IconButton } from '@mui/material'
+import PlayerChip from './PlayerChip'
 
 const Users = () => {
   const [users, setUsers] = useState([])
@@ -27,10 +26,7 @@ const Users = () => {
           <h2>{leadingAlphabet}</h2>
           {
             arrayOfPlayers.map(name =>
-              <Chip
-                key={name} label={name} variant="outlined"
-                component={Link} to={`/users/${name}`}
-              />
+              <PlayerChip key={name} name={name} />
             )
           }
         </div>

@@ -7,18 +7,17 @@ const resultsRouter = require('./controllers/results')
 const usersRouter = require('./controllers/users')
 const reaktorRouter = require('./controllers/reaktor')
 const middleware = require('./utils/middleware')
-const logger = require('./utils/logger')
 const mongoose = require('mongoose')
 const path = require('path')
 
 
-logger.info('connecting to', config.MONGODB_URI)
+console.log('connecting to', config.MONGODB_URI)
 mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    logger.info('connected to MongoDB')
+    console.log('connected to MongoDB')
   })
   .catch((error) => {
-    logger.error('error connection to MongoDB:', error.message)
+    console.error('error connection to MongoDB:', error.message)
   })
 
 app.use(cors())
@@ -39,7 +38,7 @@ app.use('/api/reaktor/rps/history', reaktorRouter)
 if (config.NODE_ENV === 'production') {
   // AFTER defining routes: Anything that doesn't match what's above, send back index.html
   // (the beginning slash ('/') in the string is important!)
-  app.get('*', (req, res) => {
+  app.get('*', (_req, res) => {
     res.sendFile(path.join(__dirname + '/../frontend/build/index.html'))
   })
 }

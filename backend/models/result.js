@@ -1,3 +1,4 @@
+const config = require('../utils/config')
 const mongoose = require('mongoose')
 
 const resultSchema = new mongoose.Schema({
@@ -33,7 +34,8 @@ resultSchema.set('toJSON', {
 
 const Result = mongoose.model('Result', resultSchema)
 
-Result.watch().
-  on('change', data => console.log(new Date(), data))
+if (config.NODE_ENV !== 'production') {
+  Result.watch().on('change', data => console.log(new Date(), data.fullDocument))
+}
 
 module.exports = Result

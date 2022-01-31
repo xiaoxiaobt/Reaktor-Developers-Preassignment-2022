@@ -10,31 +10,25 @@ The app can be accessed from:
 
 (**Note:** The app is deployed on a free dyno, so it may take some time to start)
 
-### Done
+### Tasks
 
 - [x] Scheduled trigger for loading history to the database
 - [x] MongoDB
 - [x] Websocket
-
-### TODO
-
-- [ ] Backend
+- [x] Backend
   - [x] History data API
   - [x] User data API
   - [x] Bridge for Reaktor API to prevent CORS issues
-  - [ ] User aggregated data API
-- [x] Deployment
-
-- [ ] Frontend
+  - [x] User aggregated data API
+- [x] Frontend
   - [x] Basic components
   - [x] Nav bar
   - [x] Infinite scroll
   - [x] Players in alphabetical list
-  - [ ] Aggregated data layout
-- [ ] Stylesheet and UI improvements
+  - [x] Aggregated data layout
+- [x] Stylesheet and UI improvements
+- [x] Deployment
 - [ ] Comments, README, and documentation
-- [ ] Performance improvements
-- [ ] Better linting rules
 
 ### Known issues
 

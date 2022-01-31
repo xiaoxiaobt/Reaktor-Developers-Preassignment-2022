@@ -5,4 +5,15 @@ const isWinner = (playerA, playerB) => {
     playerA.played === 'SCISSORS' && playerB.played === 'PAPER'
 }
 
-export default { isWinner }
+const mostPlayed = (rockCount, paperCount, scissorsCount) => {
+  const maxCount = Math.max(rockCount, paperCount, scissorsCount)
+  if (maxCount === rockCount) {
+    return 'ROCK'
+  } else if (maxCount === paperCount) {
+    return 'PAPER'
+  } else {
+    return 'SCISSORS'
+  }
+}
+
+export default { isWinner, mostPlayed }

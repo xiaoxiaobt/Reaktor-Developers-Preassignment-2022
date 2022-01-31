@@ -13,20 +13,24 @@ import resultService from './services/results'
 const App = () => {
 
   const socketUrl = 'wss://bad-api-assignment.reaktor.com/rps/live'
-  const [results, setResults] = useState([])
+  // `resultsInDatabases` includes history in the database at launch of the app
+  const [resultsInDatabases, setResultsInDatabases] = useState([])
+  // `resultsLive` includes history that are NOT in the databases yet
+  // and results obtained from Websocket
+  const [resultsLive, setResultsLive] = useState([])
   const [ongoing, setOngoing] = useState([])
   const { lastJsonMessage } = useWebSocket(socketUrl)
   const [hasMore, setHasMore] = useState(true)
   const [resultCursor, setResultCursor] = useState(0)
 
   useEffect(() => {
-    resultService.fetchMoreData(setResults, setHasMore, resultCursor, setResultCursor)
+    resultService.fetchMoreData(setResultsInDatabases, setHasMore, resultCursor, setResultCursor)
   }, [])
 
   useEffect(() => {
     resultService.getRemaining().then(remainingResults => {
-      setResults(prev => remainingResults.concat(prev))
-      console.log('Loaded ' + remainingResults.length + ' results from history')
+      setResultsLive(prev => remainingResults.concat(prev))
+      console.log('Loaded ' + remainingResults.length + ' results from history (those not in database)')
     })
   }, [])
 
@@ -35,7 +39,7 @@ const App = () => {
       const message = JSON.parse(lastJsonMessage)
       if (message.type === 'GAME_RESULT') {
         setOngoing(prev => prev.filter(m => m.id !== message.gameId))
-        setResults(prev => [{ ...message, id: message.gameId }, ...prev.filter(m => m.id !== message.gameId)])
+        setResultsLive(prev => [{ ...message, id: message.gameId }, ...prev.filter(m => m.id !== message.gameId)])
       } else {
         setOngoing(prev => prev.concat({ ...message, id: message.gameId }))
       }
@@ -48,18 +52,18 @@ const App = () => {
       <Container>
         <Routes>
           {/* Show result of a single play */}
-          <Route path="/results/:id" element={<Result />} />
+          <Route path="/results/:id" element={<Result resultsLive={resultsLive} />} />
 
           {/* Show statistics of a single player */}
-          <Route path="/users/:name" element={<User />} />
+          <Route path="/users/:name" element={<User resultsLive={resultsLive}/>} />
 
           {/* Show all players */}
           <Route exact path="/users" element={<Users />} />
 
           {/* Show all plays (must be limited somehow) */}
           <Route exact path="/" element={
-            <Home results={results} ongoing={ongoing} hasMore={hasMore} resultCursor={resultCursor}
-              setResults={setResults} setHasMore={setHasMore} setResultCursor={setResultCursor} />
+            <Home resultsCombined={resultsLive.concat(resultsInDatabases)} ongoing={ongoing} hasMore={hasMore} resultCursor={resultCursor}
+              setResultsInDatabases={setResultsInDatabases} setHasMore={setHasMore} setResultCursor={setResultCursor} />
           } />
         </Routes>
       </Container>

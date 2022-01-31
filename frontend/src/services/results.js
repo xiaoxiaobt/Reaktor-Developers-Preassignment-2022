@@ -29,16 +29,20 @@ const getNoDocuments = () => {
   return request.then(response => response.data)
 }
 
-const fetchMoreData = async (setResults, setHasMore, resultCursor, setResultCursor) => {
+const fetchMoreData = async (setResultsInDatabases, setHasMore, resultCursor, setResultCursor) => {
   setResultCursor(prev => prev + 50)
   if (resultCursor >= getNoDocuments()) {
     setHasMore(false)
   }
   const request = await axios.get(backendUrl + `/results?start=${resultCursor}`)
   const response = await request.data
-  setResults(prev => response.concat(prev))
+  setResultsInDatabases(prev => response.concat(prev))
   console.log('Loaded ' + response.length + ' more results from database')
 }
 
+const getById = (id) => {
+  const request = axios.get(backendUrl + '/results/' + id)
+  return request.then(response => response.data)
+}
 
-export default { getRemaining, fetchMoreData }
+export default { getRemaining, fetchMoreData, getById }
