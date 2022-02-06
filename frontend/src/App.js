@@ -22,7 +22,7 @@ const App = () => {
   // All on-going matches
   const [ongoing, setOngoing] = useState([])
   // Latest Json received from Websocket
-  const { lastJsonMessage } = useWebSocket(socketUrl)
+  const { lastJsonMessage } = useWebSocket(socketUrl, { onError: (error) => console.log(error) })
   // Scrolled to end?
   const [hasMore, setHasMore] = useState(true)
   // Size of the `resultsInDatabases`
@@ -38,7 +38,7 @@ const App = () => {
     resultService.getRemaining().then(remainingResults => {
       setResultsLive(prev => remainingResults.concat(prev))
       console.log('Loaded ' + remainingResults.length + ' results from history (those not in database)')
-    })
+    }).catch(err => console.log('Failed to load remaining results from history'))
   }, [])
 
   // Fetching the on-going matches and game results
@@ -63,7 +63,7 @@ const App = () => {
           <Route path="/results/:id" element={<Result resultsLive={resultsLive} />} />
 
           {/* Show statistics of a single player */}
-          <Route path="/users/:name" element={<User resultsLive={resultsLive}/>} />
+          <Route path="/users/:name" element={<User resultsLive={resultsLive} />} />
 
           {/* Show all players */}
           <Route exact path="/users" element={<Users />} />

@@ -7,3 +7,4 @@ scheduled_fetch.py
 /.github
 /screenshots
 **/.eslintrc.js
+**/openapi.yaml

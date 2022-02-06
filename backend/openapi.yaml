@@ -1,0 +1,203 @@
+openapi: 3.1.0
+
+info:
+  title: Backend API
+  version: 0.1.0
+
+paths:
+  /reaktor/rps/history:
+    parameters:
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          enum: [compulsory, optional]
+
+    get:
+      responses:
+        "500":
+          description: Bad request. Endpoint is not reachable.
+        "default":
+          description: Returns all game results on the page, as well as the cursor pointing to the next page
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cursor:
+                    type: string
+                    description: The cursor that points to the next page of data
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/RawResult"
+  /results:
+    parameters:
+      - name: start
+        in: query
+        schema:
+          type: integer
+          enum: [optional]
+          default: 0
+          description: Fetch data starting from the `start`-th record
+
+    get:
+      responses:
+        "default":
+          description: Returns first 50 results starting from `start`
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Result"
+
+  /results/count:
+    get:
+      responses:
+        "default":
+          description: Number of documents in the database
+          content:
+            application/json:
+              schema:
+                type: integer
+
+  /results/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        "default":
+          description: Info of a game result
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Result"
+        "400":
+          description: Malformatted ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    enum: ["malformatted id"]
+
+  /users:
+    get:
+      responses:
+        "default":
+          description: Names of all users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+
+  /users/{name}:
+    parameters:
+      - name: name
+        in: path
+        required: true
+        description: Name of the user
+        schema:
+          type: string
+    get:
+      responses:
+        "default":
+          description: Statistics of the user in played games
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Statistics"
+
+components:
+  schemas:
+    RawResult:
+      type: object
+      properties:
+        gameId:
+          type: string
+          readOnly: true
+        t:
+          type: integer
+        playerA:
+          type: object
+          properties:
+            name:
+              type: string
+            played:
+              type: string
+              enum: [ROCK, PAPER, SCISSORS]
+        playerB:
+          type: object
+          properties:
+            name:
+              type: string
+            played:
+              type: string
+              enum: [ROCK, PAPER, SCISSORS]
+        type:
+          type: string
+          enum: [GAME_RESULT]
+      required:
+        - gameId
+        - t
+        - playerA
+        - playerB
+        - type
+
+    Result:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        t:
+          type: string
+          format: date-time
+        playerA:
+          type: object
+          properties:
+            name:
+              type: string
+            played:
+              type: string
+              enum: [ROCK, PAPER, SCISSORS]
+        playerB:
+          type: object
+          properties:
+            name:
+              type: string
+            played:
+              type: string
+              enum: [ROCK, PAPER, SCISSORS]
+      required:
+        - id
+        - t
+        - playerA
+        - playerB
+    Statistics:
+      type: object
+      properties:
+        total:
+          type: integer
+        win:
+          type: integer
+        rock:
+          type: integer
+        paper:
+          type: integer
+        scissors:
+          type: integer
+      required:
+        - total
+        - win

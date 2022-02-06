@@ -27,6 +27,7 @@ When launching the application, the application first fetches 50 records from da
   - [x] User data API
   - [x] Bridge for Reaktor API to prevent CORS issues
   - [x] User aggregated data API
+  - [x] OpenAPI specification
 - [x] Frontend
   - [x] Basic components
   - [x] Nav bar
@@ -41,5 +42,4 @@ When launching the application, the application first fetches 50 records from da
 
 - In rare cases, if the user keeps scrolling, data cannot be loaded properly due to memory usage issues caused by `skip()`. This can be prevented by using checking timestamp instead, however, extra efforts need to be taken into account, for instance, if there are two records with the same timestamp.
 - A bug may exist when loading the difference between the database and the current historical data. Sometimes only a few get loaded, and it is not clear why.
-- Data need to be displayed with the newest data on top.
 - Duplicate entries are possible but the reason is not clear.

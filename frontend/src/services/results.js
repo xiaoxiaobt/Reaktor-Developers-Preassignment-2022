@@ -9,14 +9,14 @@ const backendUrl = '/api'
 const getRemaining = async () => {
   const remainingData = []
   var cursor = '/rps/history'
-  while (cursor !== null) {
+  while (cursor) {
     const request = await axios.get(backendUrl + '/reaktor' + cursor)
     const pageData = await request.data.data
     cursor = request.data.cursor
     for (const x of pageData) {
       const exist = await axios.get(backendUrl + '/results/' + x.gameId)
       if (exist.data) {
-        cursor = null
+        cursor = undefined
         console.log('Data entry already exists')
         break
       } else {
