@@ -42,4 +42,7 @@ When launching the application, the application first fetches 50 records from da
 
 - In rare cases, if the user keeps scrolling, data cannot be loaded properly due to memory usage issues caused by `skip()`. This can be prevented by using checking timestamp instead, however, extra efforts need to be taken into account, for instance, if there are two records with the same timestamp.
 - A bug may exist when loading the difference between the database and the current historical data. Sometimes only a few get loaded, and it is not clear why.
-- Duplicate entries are possible but the reason is not clear.
+
+## About
+
+Images (excluding `pending.png`) used in this repository were purchased from Adobe Stock. These images cannot be reused without permission.
