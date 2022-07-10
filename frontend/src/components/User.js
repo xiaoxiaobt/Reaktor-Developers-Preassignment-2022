@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useMatch } from 'react-router-dom'
 import helpers from '../utils/helpers'
 import userService from '../services/users'
@@ -7,8 +7,8 @@ import CircularProgress from '@mui/material/CircularProgress'
 /**
  * `User` shows aggregate information about a user.
  * Statistics include all data, including those in the database and those are not.
- * @param {object} props - props
- * @param {object[]} props.resultsLive - results of the matches that are not in database yet
+ * @param {Object} props - props
+ * @param {Object[]} props.resultsLive - results of the matches that are not in database yet
  */
 const User = ({ resultsLive }) => {
   const match = useMatch('/users/:name')

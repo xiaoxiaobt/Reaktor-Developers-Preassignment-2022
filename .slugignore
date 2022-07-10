@@ -4,6 +4,7 @@ reaktor-preassignment.code-workspace
 requirements.txt
 scheduled_fetch.py
 .gitignore
+.gitattributes
 /.github
 /screenshots
 **/.eslintrc.js

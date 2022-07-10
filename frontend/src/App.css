@@ -6,16 +6,20 @@ body {
 }
 
 a {
-    text-decoration: none; 
-    color: black; 
+    text-decoration: none;
+    color: black;
 }
 
 .resultEntry {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     position: relative;
     border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
 
 .resultEntry:hover {
@@ -31,7 +35,7 @@ a.userlink {
     text-align: left;
     float: left;
     white-space: nowrap;
-    padding: 30px; 
+    padding: 30px;
     width: 30%;
 }
 
@@ -39,7 +43,7 @@ a.userlink {
     text-align: right;
     float: right;
     white-space: nowrap;
-    padding: 30px; 
+    padding: 30px;
     width: 30%;
 }
 
@@ -63,13 +67,17 @@ a.userlink {
 }
 
 #leftPlayerName div :hover {
-    background:rgba(255,255,255,0.8);
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
 }
 
 #rightPlayerName div :hover {
-    background:rgba(255,255,255,0.8);
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 .navitem {
@@ -81,7 +89,7 @@ a.userlink {
 }
 
 .sticky-nav {
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     top: 0;
     position: sticky;
     height: 50px;
@@ -93,13 +101,13 @@ a.userlink {
 
 h1 {
     width: max-content;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 5px;
 }
 
 h2 {
     width: max-content;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 5px;
 }
 
@@ -117,7 +125,7 @@ a.MuiChip-root {
     font-size: 24px;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 a.MuiChip-root:hover {

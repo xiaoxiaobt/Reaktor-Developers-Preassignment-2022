@@ -1,7 +1,7 @@
 /**
  * Check if `playerA` is winner
- * @param {object} playerA - player A
- * @param {object} playerB - player B
+ * @param {Object} playerA - player A
+ * @param {Object} playerB - player B
  * @returns {boolean} `true` if player A is the winner, otherwise (loser/tie) return `false`
  */
 const isWinner = (playerA, playerB) => {
@@ -12,9 +12,9 @@ const isWinner = (playerA, playerB) => {
 
 /**
  * Check which hand is the most played
- * @param {int} rockCount - Number of times rock was played
- * @param {int} paperCount - Number of times paper was played
- * @param {int} scissorsCount - Number of times scissors was played
+ * @param {number} rockCount - Number of times rock was played
+ * @param {number} paperCount - Number of times paper was played
+ * @param {number} scissorsCount - Number of times scissors was played
  * @returns {('ROCK' | 'PAPER' | 'SCISSORS')} The most played hand
  */
 const mostPlayed = (rockCount, paperCount, scissorsCount) => {

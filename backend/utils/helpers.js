@@ -3,7 +3,7 @@ const _ = require('lodash')
 /**
  * Checking if a player has won a game
  * Return `true` if the player with name `name` is the winner in the game, otherwise `false`
- * @param {object} result - Info of the match
+ * @param {Object} result - Info of the match
  * @param {string} name - Name of the player
  * @returns {boolean}
  */
@@ -18,7 +18,7 @@ const isWinner = (result, name) => {
 
 /**
  * Calculate the number of winning rounds of a player
- * @param {object[]} results - All matches played by the player with name `name`
+ * @param {Object[]} results - All matches played by the player with name `name`
  * @param {string} name - Name of the player
  */
 const win = (results, name) => {
@@ -28,7 +28,7 @@ const win = (results, name) => {
 /**
  * Return aggregated statistics of hands played in games of a player
  * as a `Dictionary` (hand -> count)
- * @param {object[]} results - All matches played by the player with name `name`
+ * @param {Object[]} results - All matches played by the player with name `name`
  * @param {string} name - Name of the player
  */
 const hands = (results, name) => {

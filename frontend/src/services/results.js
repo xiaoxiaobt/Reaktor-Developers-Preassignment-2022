@@ -30,7 +30,7 @@ const getRemaining = async () => {
 
 /**
  * Get number of documents in the database
- * @returns {int} Number of documents in the database
+ * @returns {number} Number of documents in the database
  */
 const getNoDocuments = async () => {
   const request = axios.get(backendUrl + '/results/count')

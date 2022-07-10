@@ -1,4 +1,5 @@
 const config = require('./utils/config')
+const compression = require('compression')
 const express = require('express')
 require('express-async-errors')
 const app = express()
@@ -21,6 +22,9 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
   })
 // Allow CORS
 app.use(cors())
+
+// Use compression
+app.use(compression())
 
 // Serve backend and frontend on the same Heroku Dyno
 // https://stackoverflow.com/a/61354113/11609216

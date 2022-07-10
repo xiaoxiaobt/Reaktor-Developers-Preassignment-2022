@@ -1,4 +1,3 @@
-import React from 'react'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
@@ -13,16 +12,16 @@ import avatars from './Avatars'
  * so there exists some complains about it in console.
  * Due to time constraints, this will be fixed in the future.
  *
- * @param {object} props - props of the component.
- * @param {object} props.result - match result.
- * @param {object} props.result.playerA - player A object.
+ * @param {Object} props - props of the component.
+ * @param {Object} props.result - match result.
+ * @param {Object} props.result.playerA - player A object.
  * @param {string} props.result.playerA.name - player A name.
- * @param {string} props.result.playerA.played - player A's hand in the game, `'ROCK'`|`'PAPER'`|`'SCISSORS'`.
- * @param {object} props.result.playerB - player B object.
+ * @param {('ROCK'|'PAPER'|'SCISSORS')} props.result.playerA.played - player A's hand in the game.
+ * @param {Object} props.result.playerB - player B object.
  * @param {string} props.result.playerB.name - player B name.
- * @param {string} props.result.playerB.played - player B's hand in the game, `'ROCK'`|`'PAPER'`|`'SCISSORS'`.
+ * @param {('ROCK'|'PAPER'|'SCISSORS')} props.result.playerB.played - player B's hand in the game.
  * @param {string} props.result.id - id of the game.
- * @param {string} props.result.type - type of the match, either `'GAME_BEGIN'` or `'GAME_RESULT'`.
+ * @param {('GAME_BEGIN'|'GAME_RESULT')} props.result.type - type of the match.
  */
 const ResultEntry = ({ result }) => {
   const playerA = result.playerA

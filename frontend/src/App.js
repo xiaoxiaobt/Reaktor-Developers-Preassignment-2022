@@ -1,5 +1,5 @@
 import './App.css'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import useWebSocket from 'react-use-websocket'
 import Result from './components/Result'
 import Home from './components/Home'
@@ -38,7 +38,7 @@ const App = () => {
     resultService.getRemaining().then(remainingResults => {
       setResultsLive(prev => remainingResults.concat(prev))
       console.log('Loaded ' + remainingResults.length + ' results from history (those not in database)')
-    }).catch(err => console.log('Failed to load remaining results from history'))
+    }).catch(_err => console.log('Failed to load remaining results from history'))
   }, [])
 
   // Fetching the on-going matches and game results

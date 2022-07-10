@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useMatch } from 'react-router-dom'
 import resultService from '../services/results'
 import helpers from '../utils/helpers'
@@ -6,8 +6,8 @@ import PlayerChip from './PlayerChip'
 
 /**
  * Info of a match
- * @param {object} props - props
- * @param {object[]} props.resultsLive - results of the matches that are not in database yet
+ * @param {Object} props - props
+ * @param {Object[]} props.resultsLive - results of the matches that are not in database yet
  */
 const Result = ({ resultsLive }) => {
   const match = useMatch('/results/:id')
